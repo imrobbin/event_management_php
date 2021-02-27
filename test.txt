@@ -1,0 +1,9 @@
+<td class="column">
+								<h4>' . $row['title'] . '</h4>
+								<p>by ' . $row['author'] . '</p>
+								<p>by ' . $row['id'] . '</p>
+								<p>Total books: <b>' . $row['in_stock'] . '</b></p>
+								<p>Issued: <b>' . $booksIssued . '</b> &nbsp; <a href="view-issued-books.php?id=' . $row['id'] . '">View</a></p>
+								<p>Available: <b>' . $row['in_stock'] . '</b></p>
+								<p><button type="submit" class="search-btn" name="issue-submit">Issue</button></p>
+							</td>
