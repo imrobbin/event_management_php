@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2021 at 08:21 PM
+-- Generation Time: Feb 27, 2021 at 12:17 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -33,15 +33,9 @@ CREATE TABLE `bookings` (
   `booking_date` date NOT NULL,
   `event_name` varchar(25) NOT NULL,
   `event_venue` varchar(25) NOT NULL,
-  `event_theme` varchar(25) NOT NULL
+  `event_theme` varchar(25) NOT NULL,
+  `booked_by` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `bookings`
---
-
-INSERT INTO `bookings` (`id`, `booking_date`, `event_name`, `event_venue`, `event_theme`) VALUES
-(1, '2021-02-24', 'Birthday Party', 'XYZ Hotel Sadar', 'Doremon Family');
 
 -- --------------------------------------------------------
 
@@ -56,16 +50,9 @@ CREATE TABLE `customers` (
   `mobile` varchar(15) NOT NULL,
   `address` varchar(100) NOT NULL,
   `created_at` date NOT NULL COMMENT 'Date and Time on which user created',
-  `id` int(20) NOT NULL
+  `id` int(20) NOT NULL,
+  `role` varchar(20) NOT NULL DEFAULT 'customer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`email`, `password`, `fullname`, `mobile`, `address`, `created_at`, `id`) VALUES
-('r4p1506@gmail.com', 'ravindra@24', 'Ravindra Patle', '8770941440', 'Sadar, Jabalpur', '2021-02-24', 1),
-('r4p@g.com', 'ravi', 'Ra', '878787877878', 'sadar', '2021-02-24', 2);
 
 --
 -- Indexes for dumped tables
@@ -75,7 +62,8 @@ INSERT INTO `customers` (`email`, `password`, `fullname`, `mobile`, `address`, `
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `booked_by` (`booked_by`);
 
 --
 -- Indexes for table `customers`
@@ -92,13 +80,23 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`booked_by`) REFERENCES `customers` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
