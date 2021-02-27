@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 if (isset($_POST['booking-submit'])) {
 
     require 'db.inc.php';
