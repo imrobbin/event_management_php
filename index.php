@@ -14,7 +14,7 @@
         <div class="booking-table">
             <div class="grid-container">
                 <div class="grid-child">
-                    <img src="./images/event-management-system-project.jpg" alt="event management">
+                    <img src="./images/event-booking-system.png" alt="event management">
                 </div>
                 <div class="grid-child">
                     <p>
